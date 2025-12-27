@@ -1,26 +1,50 @@
-@import "tailwindcss";
+/* app/globals.css */
+@import 'tailwindcss';
 
+/* Variables CSS - SIMPLIFICADO */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #2badee;
+  --color-primary-dark: #0ea5e9;
+  --color-background-light: #ffffff;
+  --color-background-dark: #101c22;
+  --color-text-main: #111618;
+  --color-text-muted: #617c89;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Clase .dark sobrescribe las variables */
+.dark {
+  --color-background-light: #101c22;
+  --color-text-main: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Configuración de Tailwind 4 usando las variables */
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-background: var(--color-background-light);
+  --color-text: var(--color-text-main);
+
+  /* Fuentes */
+  --font-display: ui-sans-serif, system-ui, sans-serif, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-body: ui-sans-serif, system-ui, sans-serif, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+
+  /* Border radius */
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
 }
 
+/* Estilos base del body */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-text;
+  font-family: var(--font-display);
+}
+
+/* Transiciones suaves */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
