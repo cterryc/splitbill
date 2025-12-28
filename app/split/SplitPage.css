@@ -206,6 +206,10 @@
   margin-bottom: 1.5rem;
 }
 
+.amount-input-container.mobil {
+  margin-bottom: 0rem;
+}
+
 .amount-label {
   display: block;
   margin-bottom: 0.5rem;

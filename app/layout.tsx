@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from '@/context/ThemeContext'
+import { esMX } from '@clerk/localizations'
 import './globals.css'
 
 const geistSans = Geist({
@@ -24,8 +25,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const customEs = {
+    ...esMX,
+    signIn: {
+      ...esMX.signIn,
+      start: {
+        ...esMX.signIn?.start,
+        subtitle: 'para continuar con SplitBill'
+      }
+    },
+    signUp: {
+      ...esMX.signUp,
+      start: { ...esMX.signUp?.start, subtitle: 'para continuar con SplitBill' }
+    },
+    formFieldHintText__optional: ''
+  }
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={customEs}>
       {/* IMPORTANTE: suppressHydrationWarning es necesario */}
       <html lang='es' suppressHydrationWarning>
         <body

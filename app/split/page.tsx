@@ -241,7 +241,7 @@ export default function SplitPage() {
               <h2 className='panel-title'>Monto a Dividir</h2>
             </div>
 
-            <div className='amount-input-container'>
+            <div className='amount-input-container mobil'>
               <div className='amount-input-wrapper'>
                 <span className='currency-symbol'>S/</span>
                 <input
@@ -550,6 +550,66 @@ export default function SplitPage() {
             </div>
           </div>
         </div>
+
+        {/* Resultados */}
+        {splitResults.length > 0 && (
+          <div className='results-panel'>
+            {/* Tabla de resultados - Versión móvil */}
+            <div className='mobile-results'>
+              {/* Total móvil */}
+              <div className='mobile-total-card'>
+                <div className='mobile-total-header'>
+                  <h3>TOTAL</h3>
+                  <div className='mobile-total-amount'>
+                    {formatCurrencyCompact(summary?.totalCalculated || 0)}
+                  </div>
+                </div>
+                <div className='mobile-total-details'>
+                  <div className='detail-row'>
+                    <span>Personas totales:</span>
+                    <span>{summary?.totalPeople || 0}</span>
+                  </div>
+                  <div className='detail-row'>
+                    <span>Diferencia total:</span>
+                    <span
+                      className={
+                        summary &&
+                        summary.totalCalculated - parseFloat(totalAmount) === 0
+                          ? 'neutral'
+                          : summary &&
+                            summary.totalCalculated - parseFloat(totalAmount) >
+                              0
+                          ? 'positive'
+                          : 'negative'
+                      }
+                    >
+                      {summary &&
+                        formatCurrencyCompact(
+                          summary.totalCalculated - parseFloat(totalAmount)
+                        )}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Resumen compacto para móvil */}
+            <div className='mobile-summary'>
+              <div className='mobile-summary-item'>
+                <span>Método:</span>
+                <span>
+                  {calculationMethod === 'perPerson' ? 'Por Persona' : 'Igual'}
+                </span>
+              </div>
+              {calculationMethod === 'perPerson' && summary && (
+                <div className='mobile-summary-item'>
+                  <span>Por persona:</span>
+                  <span>{formatCurrencyCompact(summary.averagePerPerson)}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Acciones globales - Versión móvil */}
         <div className='mobile-global-actions'>
