@@ -1,8 +1,13 @@
 import { MdSavings } from 'react-icons/md'
 import { FaCheckCircle } from 'react-icons/fa'
+import Link from 'next/link'
+import { useAuth } from '@clerk/nextjs'
 
 // components/HeroSection.tsx
 export default function HeroSection() {
+  const { isSignedIn } = useAuth()
+  console.log('isSignedIn =>', isSignedIn)
+
   return (
     <section className='relative overflow-hidden pt-12 pb-20 sm:pt-20 sm:pb-24 lg:pb-32 bg-background-light dark:bg-background-dark'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
@@ -19,12 +24,18 @@ export default function HeroSection() {
               pagos por piso automáticamente.
             </p>
             <div className='mt-4 flex flex-col sm:flex-row justify-center lg:justify-start gap-4'>
-              <button className='flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 transition-all hover:translate-y-[-1px] hover:bg-primary-dark'>
+              <Link
+                href={isSignedIn ? '/split' : '/sign-in'}
+                className='flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-base font-bold text-white shadow-lg shadow-primary/25 transition-all hover:translate-y-[-1px] hover:bg-primary-dark'
+              >
                 Empezar a calcular
-              </button>
-              <button className='flex h-12 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 px-8 text-base font-bold text-text-main dark:text-slate-200 transition-colors hover:bg-slate-200 dark:hover:bg-slate-700'>
+              </Link>
+              <Link
+                href={isSignedIn ? '/split' : '/sign-in'}
+                className='flex h-12 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 px-8 text-base font-bold text-text-main dark:text-slate-200 transition-colors hover:bg-slate-200 dark:hover:bg-slate-700'
+              >
                 Ver demo
-              </button>
+              </Link>
             </div>
             <div className='mt-4 flex items-center justify-center lg:justify-start gap-2 text-sm text-text-muted dark:text-slate-500'>
               <FaCheckCircle className='h-5 w-5' />

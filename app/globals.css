@@ -9,12 +9,14 @@
   --color-background-dark: #101c22;
   --color-text-main: #111618;
   --color-text-muted: #617c89;
+  --color-text-dark: #111618;
 }
 
 /* Clase .dark sobrescribe las variables */
 .dark {
   --color-background-light: #101c22;
   --color-text-main: #ffffff;
+  --color-text-dark: #111618;
 }
 
 /* Configuración de Tailwind 4 usando las variables */

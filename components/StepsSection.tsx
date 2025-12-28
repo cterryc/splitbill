@@ -32,7 +32,7 @@ export default function StepsSection() {
     <section className='py-24 bg-white dark:bg-background-dark'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
         <div className='mb-16 text-center'>
-          <h2 className='text-3xl font-bold tracking-tight text-text-main dark:text-white'>
+          <h2 className='text-3xl font-bold tracking-tight text-slate-900'>
             ¿Cómo funciona?
           </h2>
           <p className='mt-4 text-lg text-text-muted dark:text-slate-400'>
